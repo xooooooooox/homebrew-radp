@@ -8,8 +8,24 @@ class RadpBashFramework < Formula
   license "MIT"
 
   def install
-    libexec.install Dir["src/main/shell/framework"]
-    bin.install "bin/radp-bf"
+    # Support both a Maven-style layout (src/main/shell/...) and a top-level layout.
+    framework_src = if Pathname("src/main/shell/framework").exist?
+      "src/main/shell/framework"
+    else
+      "framework"
+    end
+
+    radp_bf_src = if Pathname("src/main/shell/bin/radp-bf").exist?
+      "src/main/shell/bin/radp-bf"
+    else
+      "bin/radp-bf"
+    end
+
+    libexec.install framework_src
+    libexec.install Pathname(radp_bf_src).dirname
+
+    # Keep the real script under libexec so it can locate its root (.. from bin).
+    bin.install_symlink libexec/"bin/radp-bf"
   end
 
   test do
