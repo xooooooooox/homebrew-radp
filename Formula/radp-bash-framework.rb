@@ -15,14 +15,14 @@ class RadpBashFramework < Formula
       "framework"
     end
 
-    radp_bf_src = if Pathname("src/main/shell/bin/radp-bf").exist?
+    radp_bf_bin_src = if Pathname("src/main/shell/bin/radp-bf").exist?
       "src/main/shell/bin/radp-bf"
     else
       "bin/radp-bf"
     end
 
     libexec.install framework_src
-    libexec.install Pathname(radp_bf_src).dirname
+    libexec.install Pathname(radp_bf_bin_src).dirname
 
     # Keep the real script under libexec so it can locate its root (.. from bin).
     bin.install_symlink libexec/"bin/radp-bf"
