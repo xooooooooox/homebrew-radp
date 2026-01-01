@@ -3,8 +3,8 @@
 class RadpBashFramework < Formula
   desc "Modular Bash framework with preflight checks and structured context"
   homepage "https://github.com/xooooooooox/radp-bash-framework"
-  url "https://github.com/xooooooooox/radp-bash-framework/archive/refs/tags/v0.0.2.tar.gz"
-  sha256 "97c72a4c8ff6e32fdcf4911413ed2b463ea3c1b6e757df0c47cd1ba605133377"
+  url "https://github.com/xooooooooox/radp-bash-framework/archive/refs/tags/v0.1.0.tar.gz"
+  sha256 "013eed950d6f715ec4a86f97f157f4685fea85fdad89b29238a8ff416d782da4"
   license "MIT"
 
   def install
