@@ -2,9 +2,9 @@
 # The CI workflow uses this template and replaces placeholders with actual values.
 #
 # Placeholders:
-#   https://github.com/xooooooooox/radp-vagrant-framework/archive/refs/tags/v0.0.9.tar.gz - GitHub archive URL for the release tag
-#   6b41db7dfa17ef9458d7ec6a735492448ff1e50f751757a9c3bb92f87cbe2980      - SHA256 checksum of the tarball
-#   0.0.9     - Version number (without 'v' prefix)
+#   https://github.com/xooooooooox/radp-vagrant-framework/archive/refs/tags/v0.0.10.tar.gz - GitHub archive URL for the release tag
+#   7129eed28e388c6cf9a08e180f36acbf37715a6ae6065eb9a7ea13c9bb872d85      - SHA256 checksum of the tarball
+#   0.0.10     - Version number (without 'v' prefix)
 #
 # Installation:
 #   brew tap xooooooooox/radp
@@ -13,13 +13,16 @@
 class RadpVagrantFramework < Formula
   desc "YAML-driven framework for managing multi-machine Vagrant environments"
   homepage "https://github.com/xooooooooox/radp-vagrant-framework"
-  url "https://github.com/xooooooooox/radp-vagrant-framework/archive/refs/tags/v0.0.9.tar.gz"
-  sha256 "6b41db7dfa17ef9458d7ec6a735492448ff1e50f751757a9c3bb92f87cbe2980"
-  version "0.0.9"
+  url "https://github.com/xooooooooox/radp-vagrant-framework/archive/refs/tags/v0.0.10.tar.gz"
+  sha256 "7129eed28e388c6cf9a08e180f36acbf37715a6ae6065eb9a7ea13c9bb872d85"
+  version "0.0.10"
   license "MIT"
 
   # Use system ruby on macOS instead of forcing Homebrew's ruby
   uses_from_macos "ruby"
+
+  # Vagrant is required (installed via cask)
+  depends_on cask: "vagrant"
 
   def install
     # Install Ruby framework files
@@ -28,6 +31,19 @@ class RadpVagrantFramework < Formula
     # Install CLI script to libexec/bin and create symlink
     (libexec/"bin").install "src/main/shell/bin/radp-vf"
     bin.install_symlink libexec/"bin/radp-vf"
+  end
+
+  def caveats
+    <<~EOS
+      radp-vagrant-framework requires a Vagrant provider (e.g., VirtualBox).
+      To install VirtualBox:
+        brew install --cask virtualbox
+
+      Quick start:
+        radp-vf init myproject
+        cd myproject
+        radp-vf vg status
+    EOS
   end
 
   test do
