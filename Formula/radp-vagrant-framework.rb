@@ -2,9 +2,9 @@
 # The CI workflow uses this template and replaces placeholders with actual values.
 #
 # Placeholders:
-#   https://github.com/xooooooooox/radp-vagrant-framework/archive/refs/tags/v0.0.10.tar.gz - GitHub archive URL for the release tag
-#   7129eed28e388c6cf9a08e180f36acbf37715a6ae6065eb9a7ea13c9bb872d85      - SHA256 checksum of the tarball
-#   0.0.10     - Version number (without 'v' prefix)
+#   https://github.com/xooooooooox/radp-vagrant-framework/archive/refs/tags/v0.0.11.tar.gz - GitHub archive URL for the release tag
+#   18b0aa045b6f376f7ad6076385c22cc1a773dc80edd246293bb3e4a78f81f569      - SHA256 checksum of the tarball
+#   0.0.11     - Version number (without 'v' prefix)
 #
 # Installation:
 #   brew tap xooooooooox/radp
@@ -13,16 +13,13 @@
 class RadpVagrantFramework < Formula
   desc "YAML-driven framework for managing multi-machine Vagrant environments"
   homepage "https://github.com/xooooooooox/radp-vagrant-framework"
-  url "https://github.com/xooooooooox/radp-vagrant-framework/archive/refs/tags/v0.0.10.tar.gz"
-  sha256 "7129eed28e388c6cf9a08e180f36acbf37715a6ae6065eb9a7ea13c9bb872d85"
-  version "0.0.10"
+  url "https://github.com/xooooooooox/radp-vagrant-framework/archive/refs/tags/v0.0.11.tar.gz"
+  sha256 "18b0aa045b6f376f7ad6076385c22cc1a773dc80edd246293bb3e4a78f81f569"
+  version "0.0.11"
   license "MIT"
 
   # Use system ruby on macOS instead of forcing Homebrew's ruby
   uses_from_macos "ruby"
-
-  # Vagrant is required (installed via cask)
-  depends_on cask: "vagrant"
 
   def install
     # Install Ruby framework files
@@ -35,8 +32,10 @@ class RadpVagrantFramework < Formula
 
   def caveats
     <<~EOS
-      radp-vagrant-framework requires a Vagrant provider (e.g., VirtualBox).
-      To install VirtualBox:
+      radp-vagrant-framework requires Vagrant and a provider (e.g., VirtualBox).
+
+      To install dependencies:
+        brew install --cask vagrant
         brew install --cask virtualbox
 
       Quick start:
