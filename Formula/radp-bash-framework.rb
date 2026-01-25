@@ -1,34 +1,52 @@
-# frozen_string_literal: true
+# Homebrew formula template for radp-bash-framework
+# The CI workflow uses this template and replaces placeholders with actual values.
+#
+# Placeholders:
+#   https://github.com/xooooooooox/radp-bash-framework/archive/refs/tags/v0.4.4.tar.gz - GitHub archive URL for the release tag
+#   469a5d402980c86c0a1df75e0dff7427eea6c1d69ca921ad078b155822677ce1      - SHA256 checksum of the tarball
+#   0.4.4     - Version number (without 'v' prefix)
+#
+# Installation:
+#   brew tap xooooooooox/radp
+#   brew install radp-bash-framework
 
 class RadpBashFramework < Formula
-  desc "Modular Bash framework with preflight checks and structured context"
+  desc "Modular Bash framework with logging, configuration, and CLI toolkit"
   homepage "https://github.com/xooooooooox/radp-bash-framework"
-  url "https://github.com/xooooooooox/radp-bash-framework/archive/refs/tags/v0.4.3.tar.gz"
-  sha256 "57e9199171e4e7c73a83578d5c068c4494ec695c1925373e3ad369576cf453c8"
+  url "https://github.com/xooooooooox/radp-bash-framework/archive/refs/tags/v0.4.4.tar.gz"
+  sha256 "469a5d402980c86c0a1df75e0dff7427eea6c1d69ca921ad078b155822677ce1"
+  version "0.4.4"
   license "MIT"
 
   def install
-    # Support both a Maven-style layout (src/main/shell/...) and a top-level layout.
-    framework_src = if Pathname("src/main/shell/framework").exist?
-      "src/main/shell/framework"
-    else
-      "framework"
-    end
+    # Install framework to libexec
+    libexec.install Dir["src/main/shell/*"]
 
-    radp_bf_bin_src = if Pathname("src/main/shell/bin/radp-bf").exist?
-      "src/main/shell/bin/radp-bf"
-    else
-      "bin/radp-bf"
-    end
+    # Create bin wrapper for radp-bf CLI
+    (bin/"radp-bf").write <<~EOS
+      #!/bin/bash
+      exec "#{libexec}/bin/radp-bf" "$@"
+    EOS
+  end
 
-    libexec.install framework_src
-    libexec.install Pathname(radp_bf_bin_src).dirname
+  def caveats
+    <<~EOS
+      radp-bash-framework has been installed to:
+        #{libexec}
 
-    # Keep the real script under libexec so it can locate its root (.. from bin).
-    bin.install_symlink libexec/"bin/radp-bf"
+      The CLI wrapper 'radp-bf' is available in your PATH.
+
+      Quick start:
+        radp-bf --help
+        radp-bf new mycli    # Create a new CLI project
+
+      To use the framework in your scripts:
+        source "$(radp-bf --print-run)"
+    EOS
   end
 
   test do
-    assert_match "framework", shell_output("#{bin}/radp-bf --print-root")
+    system "#{bin}/radp-bf", "--version"
+    system "#{bin}/radp-bf", "--print-root"
   end
 end
