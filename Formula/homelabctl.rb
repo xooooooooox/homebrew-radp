@@ -2,9 +2,9 @@
 # The CI workflow uses this template and replaces placeholders with actual values.
 #
 # Placeholders:
-#   https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.0.4.tar.gz - GitHub archive URL for the release tag
-#   1e5a8af214ff777ba705c1b1fa2b04c3039e9656926ce51338930727f814eb77      - SHA256 checksum of the tarball
-#   0.0.4     - Version number (without 'v' prefix)
+#   https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.0.5.tar.gz - GitHub archive URL for the release tag
+#   cc4eabc297d5a19df819863e451fbc572ac78e58ff1e9fea1b51281953a36737      - SHA256 checksum of the tarball
+#   0.0.5     - Version number (without 'v' prefix)
 #
 # Installation:
 #   brew tap xooooooooox/radp
@@ -13,9 +13,9 @@
 class Homelabctl < Formula
   desc "CLI tool for managing homelab infrastructure"
   homepage "https://github.com/xooooooooox/homelabctl"
-  url "https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.0.4.tar.gz"
-  sha256 "1e5a8af214ff777ba705c1b1fa2b04c3039e9656926ce51338930727f814eb77"
-  version "0.0.4"
+  url "https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.0.5.tar.gz"
+  sha256 "cc4eabc297d5a19df819863e451fbc572ac78e58ff1e9fea1b51281953a36737"
+  version "0.0.5"
   license "MIT"
 
   depends_on "xooooooooox/radp/radp-bash-framework"
@@ -29,6 +29,10 @@ class Homelabctl < Formula
       #!/bin/bash
       exec "#{libexec}/bin/homelabctl" "$@"
     EOS
+
+    # Install shell completions
+    bash_completion.install "completions/homelabctl.bash" => "homelabctl"
+    zsh_completion.install "completions/homelabctl.zsh" => "_homelabctl"
   end
 
   def caveats
@@ -37,6 +41,25 @@ class Homelabctl < Formula
 
       For Vagrant integration, also install radp-vagrant-framework:
         brew install radp-vagrant-framework
+
+      Shell Completions:
+        Completions are installed to Homebrew's standard directories.
+
+        For Bash, ensure bash-completion is configured:
+          brew install bash-completion@2
+          # Add to ~/.bash_profile or ~/.bashrc:
+          [[ -r "#{HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]] && \\
+            source "#{HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+
+        For Zsh, completions should work automatically if using Homebrew's site-functions.
+        If not, add to ~/.zshrc (before compinit):
+          fpath=(#{HOMEBREW_PREFIX}/share/zsh/site-functions $fpath)
+
+        Alternative: Dynamic completion (always up-to-date):
+          # Bash: Add to ~/.bashrc
+          eval "$(homelabctl completion bash)"
+          # Zsh: Add to ~/.zshrc
+          eval "$(homelabctl completion zsh)"
 
       Quick start:
         homelabctl --help
