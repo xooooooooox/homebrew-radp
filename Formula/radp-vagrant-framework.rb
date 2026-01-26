@@ -2,9 +2,9 @@
 # The CI workflow uses this template and replaces placeholders with actual values.
 #
 # Placeholders:
-#   https://github.com/xooooooooox/radp-vagrant-framework/archive/refs/tags/v0.1.8.tar.gz - GitHub archive URL for the release tag
-#   f09ae1c6885653720f95c0cd9728a3c0082da329a6f05ba2718496f996e8d607      - SHA256 checksum of the tarball
-#   0.1.8     - Version number (without 'v' prefix)
+#   https://github.com/xooooooooox/radp-vagrant-framework/archive/refs/tags/v0.1.9.tar.gz - GitHub archive URL for the release tag
+#   b6272293bc0df9e7d4a387e83bbe7b42e2b7777e936b5f79bbf0f71e270ca249      - SHA256 checksum of the tarball
+#   0.1.9     - Version number (without 'v' prefix)
 #
 # Installation:
 #   brew tap xooooooooox/radp
@@ -13,9 +13,9 @@
 class RadpVagrantFramework < Formula
   desc "YAML-driven framework for managing multi-machine Vagrant environments"
   homepage "https://github.com/xooooooooox/radp-vagrant-framework"
-  url "https://github.com/xooooooooox/radp-vagrant-framework/archive/refs/tags/v0.1.8.tar.gz"
-  sha256 "f09ae1c6885653720f95c0cd9728a3c0082da329a6f05ba2718496f996e8d607"
-  version "0.1.8"
+  url "https://github.com/xooooooooox/radp-vagrant-framework/archive/refs/tags/v0.1.9.tar.gz"
+  sha256 "b6272293bc0df9e7d4a387e83bbe7b42e2b7777e936b5f79bbf0f71e270ca249"
+  version "0.1.9"
   license "MIT"
 
   # Use system ruby on macOS instead of forcing Homebrew's ruby
@@ -44,6 +44,20 @@ class RadpVagrantFramework < Formula
       To install dependencies:
         brew install --cask vagrant
         brew install --cask virtualbox
+
+      Shell Completions:
+        Completions are installed to Homebrew's standard directories.
+
+        For Bash, ensure bash-completion is configured:
+          brew install bash-completion@2
+          # Add to ~/.bash_profile or ~/.bashrc:
+          [[ -r "#{HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]] && \\
+            source "#{HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+
+        For Zsh, rebuild completion cache after installation:
+          rm -f ~/.zcompdump* ~/.cache/zsh/zcompdump*
+          compinit
+        Or simply restart your terminal.
 
       Quick start:
         radp-vf init myproject
