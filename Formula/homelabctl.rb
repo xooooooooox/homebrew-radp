@@ -2,9 +2,9 @@
 # The CI workflow uses this template and replaces placeholders with actual values.
 #
 # Placeholders:
-#   https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.0.5.tar.gz - GitHub archive URL for the release tag
-#   cc4eabc297d5a19df819863e451fbc572ac78e58ff1e9fea1b51281953a36737      - SHA256 checksum of the tarball
-#   0.0.5     - Version number (without 'v' prefix)
+#   https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.0.6.tar.gz - GitHub archive URL for the release tag
+#   7b7ee7d3f4c5b86dcca200383721fe3d0fc0acf4739ce3c2605710d345f3da5c      - SHA256 checksum of the tarball
+#   0.0.6     - Version number (without 'v' prefix)
 #
 # Installation:
 #   brew tap xooooooooox/radp
@@ -13,9 +13,9 @@
 class Homelabctl < Formula
   desc "CLI tool for managing homelab infrastructure"
   homepage "https://github.com/xooooooooox/homelabctl"
-  url "https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.0.5.tar.gz"
-  sha256 "cc4eabc297d5a19df819863e451fbc572ac78e58ff1e9fea1b51281953a36737"
-  version "0.0.5"
+  url "https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.0.6.tar.gz"
+  sha256 "7b7ee7d3f4c5b86dcca200383721fe3d0fc0acf4739ce3c2605710d345f3da5c"
+  version "0.0.6"
   license "MIT"
 
   depends_on "xooooooooox/radp/radp-bash-framework"
@@ -51,9 +51,10 @@ class Homelabctl < Formula
           [[ -r "#{HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]] && \\
             source "#{HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
 
-        For Zsh, completions should work automatically if using Homebrew's site-functions.
-        If not, add to ~/.zshrc (before compinit):
-          fpath=(#{HOMEBREW_PREFIX}/share/zsh/site-functions $fpath)
+        For Zsh, rebuild completion cache after installation:
+          rm -f ~/.zcompdump* ~/.cache/zsh/zcompdump*
+          compinit
+        Or simply restart your terminal.
 
         Alternative: Dynamic completion (always up-to-date):
           # Bash: Add to ~/.bashrc
