@@ -2,9 +2,9 @@
 # The CI workflow uses this template and replaces placeholders with actual values.
 #
 # Placeholders:
-#   https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.0.17.tar.gz - GitHub archive URL for the release tag
-#   e282420b030627ed327192337432cdf3c21799265afd5e1b98cbe65c542a8a53      - SHA256 checksum of the tarball
-#   0.0.17     - Version number (without 'v' prefix)
+#   https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.1.0.tar.gz - GitHub archive URL for the release tag
+#   6d3d32ded9c98829e2cdab70b5cc35f751fa5174b610dbbcc49ef874a3d5ccc7      - SHA256 checksum of the tarball
+#   0.1.0     - Version number (without 'v' prefix)
 #
 # Installation:
 #   brew tap xooooooooox/radp
@@ -13,9 +13,9 @@
 class Homelabctl < Formula
   desc "CLI tool for managing homelab infrastructure"
   homepage "https://github.com/xooooooooox/homelabctl"
-  url "https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.0.17.tar.gz"
-  sha256 "e282420b030627ed327192337432cdf3c21799265afd5e1b98cbe65c542a8a53"
-  version "0.0.17"
+  url "https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.1.0.tar.gz"
+  sha256 "6d3d32ded9c98829e2cdab70b5cc35f751fa5174b610dbbcc49ef874a3d5ccc7"
+  version "0.1.0"
   license "MIT"
 
   depends_on "xooooooooox/radp/radp-bash-framework"
