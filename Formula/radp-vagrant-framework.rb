@@ -2,9 +2,9 @@
 # The CI workflow uses this template and replaces placeholders with actual values.
 #
 # Placeholders:
-#   https://github.com/xooooooooox/radp-vagrant-framework/archive/refs/tags/v0.2.1.tar.gz - GitHub archive URL for the release tag
-#   a9a494108dbfdc13b4cd7b3d24e4c39b511a11e6716f50e5c9c1557d0580c325      - SHA256 checksum of the tarball
-#   0.2.1     - Version number (without 'v' prefix)
+#   https://github.com/xooooooooox/radp-vagrant-framework/archive/refs/tags/v0.2.2.tar.gz - GitHub archive URL for the release tag
+#   7480d407fdf7fdece54e8a5c86ec68f70767747bae0f57373989c2514b9c7938      - SHA256 checksum of the tarball
+#   0.2.2     - Version number (without 'v' prefix)
 #
 # Installation:
 #   brew tap xooooooooox/radp
@@ -13,9 +13,9 @@
 class RadpVagrantFramework < Formula
   desc "YAML-driven framework for managing multi-machine Vagrant environments"
   homepage "https://github.com/xooooooooox/radp-vagrant-framework"
-  url "https://github.com/xooooooooox/radp-vagrant-framework/archive/refs/tags/v0.2.1.tar.gz"
-  sha256 "a9a494108dbfdc13b4cd7b3d24e4c39b511a11e6716f50e5c9c1557d0580c325"
-  version "0.2.1"
+  url "https://github.com/xooooooooox/radp-vagrant-framework/archive/refs/tags/v0.2.2.tar.gz"
+  sha256 "7480d407fdf7fdece54e8a5c86ec68f70767747bae0f57373989c2514b9c7938"
+  version "0.2.2"
   license "MIT"
 
   # Use system ruby on macOS instead of forcing Homebrew's ruby
