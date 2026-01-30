@@ -2,9 +2,9 @@
 # The CI workflow uses this template and replaces placeholders with actual values.
 #
 # Placeholders:
-#   https://github.com/xooooooooox/radp-bash-framework/archive/refs/tags/v0.6.15.tar.gz - GitHub archive URL for the release tag
-#   c5e32da3155c2b5f40b19880c0ab348822f585b2a84e858290971be7a1e30745      - SHA256 checksum of the tarball
-#   0.6.15     - Version number (without 'v' prefix)
+#   https://github.com/xooooooooox/radp-bash-framework/archive/refs/tags/v0.6.16.tar.gz - GitHub archive URL for the release tag
+#   605a89999d0405c5e0afc63dbb7f8c9936f82f69e7f57e0f9ade6c827bce2697      - SHA256 checksum of the tarball
+#   0.6.16     - Version number (without 'v' prefix)
 #
 # Installation:
 #   brew tap xooooooooox/radp
@@ -13,9 +13,9 @@
 class RadpBashFramework < Formula
   desc "Modular Bash framework with logging, configuration, and CLI toolkit"
   homepage "https://github.com/xooooooooox/radp-bash-framework"
-  url "https://github.com/xooooooooox/radp-bash-framework/archive/refs/tags/v0.6.15.tar.gz"
-  sha256 "c5e32da3155c2b5f40b19880c0ab348822f585b2a84e858290971be7a1e30745"
-  version "0.6.15"
+  url "https://github.com/xooooooooox/radp-bash-framework/archive/refs/tags/v0.6.16.tar.gz"
+  sha256 "605a89999d0405c5e0afc63dbb7f8c9936f82f69e7f57e0f9ade6c827bce2697"
+  version "0.6.16"
   license "MIT"
 
   def install
