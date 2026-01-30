@@ -2,9 +2,9 @@
 # The CI workflow uses this template and replaces placeholders with actual values.
 #
 # Placeholders:
-#   https://github.com/xooooooooox/radp-bash-framework/archive/refs/tags/v0.6.14.tar.gz - GitHub archive URL for the release tag
-#   12363f406d2fbc64f4e8c78ab357283dedea91bef148bffc7640253870fbfebd      - SHA256 checksum of the tarball
-#   0.6.14     - Version number (without 'v' prefix)
+#   https://github.com/xooooooooox/radp-bash-framework/archive/refs/tags/v0.6.15.tar.gz - GitHub archive URL for the release tag
+#   c5e32da3155c2b5f40b19880c0ab348822f585b2a84e858290971be7a1e30745      - SHA256 checksum of the tarball
+#   0.6.15     - Version number (without 'v' prefix)
 #
 # Installation:
 #   brew tap xooooooooox/radp
@@ -13,9 +13,9 @@
 class RadpBashFramework < Formula
   desc "Modular Bash framework with logging, configuration, and CLI toolkit"
   homepage "https://github.com/xooooooooox/radp-bash-framework"
-  url "https://github.com/xooooooooox/radp-bash-framework/archive/refs/tags/v0.6.14.tar.gz"
-  sha256 "12363f406d2fbc64f4e8c78ab357283dedea91bef148bffc7640253870fbfebd"
-  version "0.6.14"
+  url "https://github.com/xooooooooox/radp-bash-framework/archive/refs/tags/v0.6.15.tar.gz"
+  sha256 "c5e32da3155c2b5f40b19880c0ab348822f585b2a84e858290971be7a1e30745"
+  version "0.6.15"
   license "MIT"
 
   def install
@@ -27,6 +27,10 @@ class RadpBashFramework < Formula
       #!/bin/bash
       exec "#{libexec}/bin/radp-bf" "$@"
     EOS
+
+    # Install shell completions
+    bash_completion.install "src/main/shell/completions/radp-bf"
+    zsh_completion.install "src/main/shell/completions/_radp-bf"
   end
 
   def caveats
@@ -43,12 +47,8 @@ class RadpBashFramework < Formula
       To use the framework in your scripts:
         source "$(radp-bf path init)"
 
-      Shell completion:
-        # Bash
-        radp-bf completion bash > $(brew --prefix)/etc/bash_completion.d/radp-bf
-
-        # Zsh
-        radp-bf completion zsh > $(brew --prefix)/share/zsh/site-functions/_radp-bf
+      Shell completion has been installed automatically.
+      Restart your shell or run: source ~/.bashrc (or ~/.zshrc)
     EOS
   end
 
