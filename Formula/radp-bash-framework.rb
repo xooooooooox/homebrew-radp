@@ -2,9 +2,9 @@
 # The CI workflow uses this template and replaces placeholders with actual values.
 #
 # Placeholders:
-#   https://github.com/xooooooooox/radp-bash-framework/archive/refs/tags/v0.6.16.tar.gz - GitHub archive URL for the release tag
-#   605a89999d0405c5e0afc63dbb7f8c9936f82f69e7f57e0f9ade6c827bce2697      - SHA256 checksum of the tarball
-#   0.6.16     - Version number (without 'v' prefix)
+#   https://github.com/xooooooooox/radp-bash-framework/archive/refs/tags/v0.6.17.tar.gz - GitHub archive URL for the release tag
+#   abdf2e87ed9146fb139ea7abd4a8334b55fe76659dd0c7526163a324def96d0b      - SHA256 checksum of the tarball
+#   0.6.17     - Version number (without 'v' prefix)
 #
 # Installation:
 #   brew tap xooooooooox/radp
@@ -13,9 +13,9 @@
 class RadpBashFramework < Formula
   desc "Modular Bash framework with logging, configuration, and CLI toolkit"
   homepage "https://github.com/xooooooooox/radp-bash-framework"
-  url "https://github.com/xooooooooox/radp-bash-framework/archive/refs/tags/v0.6.16.tar.gz"
-  sha256 "605a89999d0405c5e0afc63dbb7f8c9936f82f69e7f57e0f9ade6c827bce2697"
-  version "0.6.16"
+  url "https://github.com/xooooooooox/radp-bash-framework/archive/refs/tags/v0.6.17.tar.gz"
+  sha256 "abdf2e87ed9146fb139ea7abd4a8334b55fe76659dd0c7526163a324def96d0b"
+  version "0.6.17"
   license "MIT"
 
   def install
@@ -28,9 +28,9 @@ class RadpBashFramework < Formula
       exec "#{libexec}/bin/radp-bf" "$@"
     EOS
 
-    # Install shell completions
-    bash_completion.install "src/main/shell/completions/radp-bf"
-    zsh_completion.install "src/main/shell/completions/_radp-bf"
+    # Install shell completions (from root completions/ directory)
+    bash_completion.install "completions/radp-bf"
+    zsh_completion.install "completions/_radp-bf"
   end
 
   def caveats
