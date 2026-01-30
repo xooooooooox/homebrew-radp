@@ -2,9 +2,9 @@
 # The CI workflow uses this template and replaces placeholders with actual values.
 #
 # Placeholders:
-#   https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.1.10.tar.gz - GitHub archive URL for the release tag
-#   fa5b9c221ec826e2da3429a2c29b70d4a97635118dbc373b2ee0d69c8b16aaa9      - SHA256 checksum of the tarball
-#   0.1.10     - Version number (without 'v' prefix)
+#   https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.1.11.tar.gz - GitHub archive URL for the release tag
+#   fe8bf3b176b96175008b79345c665d46194732f64948dc31a5fb737fc0a91f47      - SHA256 checksum of the tarball
+#   0.1.11     - Version number (without 'v' prefix)
 #
 # Installation:
 #   brew tap xooooooooox/radp
@@ -13,16 +13,20 @@
 class Homelabctl < Formula
   desc "CLI tool for managing homelab infrastructure"
   homepage "https://github.com/xooooooooox/homelabctl"
-  url "https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.1.10.tar.gz"
-  sha256 "fa5b9c221ec826e2da3429a2c29b70d4a97635118dbc373b2ee0d69c8b16aaa9"
-  version "0.1.10"
+  url "https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.1.11.tar.gz"
+  sha256 "fe8bf3b176b96175008b79345c665d46194732f64948dc31a5fb737fc0a91f47"
+  version "0.1.11"
   license "MIT"
 
   depends_on "xooooooooox/radp/radp-bash-framework"
 
   def install
-    # Install to libexec
-    libexec.install "bin", "src"
+    # Install to libexec, excluding IDE support files
+    libexec.install "bin"
+    libexec.install "src"
+
+    # Remove IDE support files (development only, not needed at runtime)
+    Dir.glob(libexec/"src/**/_ide*.sh").each { |f| rm f }
 
     # Create wrapper script that sets up paths
     (bin/"homelabctl").write <<~EOS
