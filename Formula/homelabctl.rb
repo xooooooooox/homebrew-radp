@@ -2,9 +2,9 @@
 # The CI workflow uses this template and replaces placeholders with actual values.
 #
 # Placeholders:
-#   https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.1.14.tar.gz - GitHub archive URL for the release tag
-#   8fdd607069fb893927df6bde34921ae59d6a482e121b9e58ae0ebe0b8b45fa3e      - SHA256 checksum of the tarball
-#   0.1.14     - Version number (without 'v' prefix)
+#   https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.1.15.tar.gz - GitHub archive URL for the release tag
+#   0f14adcf449444370150c3334286315e7b5b61a66695d7bfb235873fc85edf47      - SHA256 checksum of the tarball
+#   0.1.15     - Version number (without 'v' prefix)
 #
 # Installation:
 #   brew tap xooooooooox/radp
@@ -13,9 +13,9 @@
 class Homelabctl < Formula
   desc "CLI tool for managing homelab infrastructure"
   homepage "https://github.com/xooooooooox/homelabctl"
-  url "https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.1.14.tar.gz"
-  sha256 "8fdd607069fb893927df6bde34921ae59d6a482e121b9e58ae0ebe0b8b45fa3e"
-  version "0.1.14"
+  url "https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.1.15.tar.gz"
+  sha256 "0f14adcf449444370150c3334286315e7b5b61a66695d7bfb235873fc85edf47"
+  version "0.1.15"
   license "MIT"
 
   depends_on "xooooooooox/radp/radp-bash-framework"
@@ -63,13 +63,13 @@ class Homelabctl < Formula
           zinit snippet #{HOMEBREW_PREFIX}/share/zsh/site-functions/_homelabctl
 
         For Oh-My-Zsh users:
-          ln -sf #{HOMEBREW_PREFIX}/share/zsh/site-functions/_homelabctl \\
+          ln -sf #{HOMEBREW_PREFIX}/share/zsh/site-functions/_homelabctl \
             ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/homelabctl/_homelabctl
 
         For Bash:
           brew install bash-completion@2
           # Add to ~/.bash_profile or ~/.bashrc:
-          [[ -r "#{HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]] && \\
+          [[ -r "#{HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]] && \
             source "#{HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
 
         Alternative - Dynamic completion (always up-to-date):
@@ -78,8 +78,6 @@ class Homelabctl < Formula
 
       Quick start:
         homelabctl --help
-        homelabctl vf init myproject
-        homelabctl vg status
     EOS
   end
 
