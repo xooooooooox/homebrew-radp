@@ -2,9 +2,9 @@
 # The CI workflow uses this template and replaces placeholders with actual values.
 #
 # Placeholders:
-#   https://github.com/xooooooooox/radp-bash-framework/archive/refs/tags/v0.7.2.tar.gz - GitHub archive URL for the release tag
-#   304d00370e4c2637f90f2b0515dce7f14e929b27d8901f597b085e2ea6366a1c      - SHA256 checksum of the tarball
-#   0.7.2     - Version number (without 'v' prefix)
+#   https://github.com/xooooooooox/radp-bash-framework/archive/refs/tags/v0.7.3.tar.gz - GitHub archive URL for the release tag
+#   fb8116d9d808e30fa784be8b3cdad09a3942103e9034838527afba63541eeaab      - SHA256 checksum of the tarball
+#   0.7.3     - Version number (without 'v' prefix)
 #
 # Installation:
 #   brew tap xooooooooox/radp
@@ -13,14 +13,15 @@
 class RadpBashFramework < Formula
   desc "Modular Bash framework with logging, configuration, and CLI toolkit"
   homepage "https://github.com/xooooooooox/radp-bash-framework"
-  url "https://github.com/xooooooooox/radp-bash-framework/archive/refs/tags/v0.7.2.tar.gz"
-  sha256 "304d00370e4c2637f90f2b0515dce7f14e929b27d8901f597b085e2ea6366a1c"
-  version "0.7.2"
+  url "https://github.com/xooooooooox/radp-bash-framework/archive/refs/tags/v0.7.3.tar.gz"
+  sha256 "fb8116d9d808e30fa784be8b3cdad09a3942103e9034838527afba63541eeaab"
+  version "0.7.3"
   license "MIT"
 
   def install
-    # Install framework to libexec
-    libexec.install Dir["src/main/shell/*"]
+    # Install framework with standard CLI project structure
+    libexec.install "bin"
+    (libexec/"src/main/shell").install Dir["src/main/shell/*"]
 
     # Create bin wrapper for radp-bf CLI
     (bin/"radp-bf").write <<~EOS
