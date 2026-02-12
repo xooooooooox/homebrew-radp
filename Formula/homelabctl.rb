@@ -2,9 +2,9 @@
 # The CI workflow uses this template and replaces placeholders with actual values.
 #
 # Placeholders:
-#   https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.2.14.tar.gz - GitHub archive URL for the release tag
-#   bf2f287d10786079fb6675101b91962196a60d412ee5542960212d0a75f2ac15      - SHA256 checksum of the tarball
-#   0.2.14     - Version number (without 'v' prefix)
+#   https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.2.15.tar.gz - GitHub archive URL for the release tag
+#   581a3e980b1202f1e7705dc582e4cf2eb8751e6a26cb8da229b42d9713ef8b20      - SHA256 checksum of the tarball
+#   0.2.15     - Version number (without 'v' prefix)
 #
 # Installation:
 #   brew tap xooooooooox/radp
@@ -13,9 +13,9 @@
 class Homelabctl < Formula
   desc "CLI tool for managing homelab infrastructure"
   homepage "https://github.com/xooooooooox/homelabctl"
-  url "https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.2.14.tar.gz"
-  sha256 "bf2f287d10786079fb6675101b91962196a60d412ee5542960212d0a75f2ac15"
-  version "0.2.14"
+  url "https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.2.15.tar.gz"
+  sha256 "581a3e980b1202f1e7705dc582e4cf2eb8751e6a26cb8da229b42d9713ef8b20"
+  version "0.2.15"
   license "MIT"
 
   depends_on "xooooooooox/radp/radp-bash-framework"
@@ -37,6 +37,11 @@ class Homelabctl < Formula
     # Install shell completions
     bash_completion.install "completions/homelabctl.bash" => "homelabctl"
     zsh_completion.install "completions/homelabctl.zsh" => "_homelabctl"
+  end
+
+  def post_install
+    (libexec/".install-repo").write("xooooooooox/homelabctl\n")
+    (libexec/".install-method").write("homebrew\n")
   end
 
   def caveats
