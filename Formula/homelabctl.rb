@@ -2,9 +2,9 @@
 # The CI workflow uses this template and replaces placeholders with actual values.
 #
 # Placeholders:
-#   https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.2.16.tar.gz - GitHub archive URL for the release tag
-#   f2567e31428157e51e17978ed56f94f740ed5556a9d8b81a4f42b213fe3614af      - SHA256 checksum of the tarball
-#   0.2.16     - Version number (without 'v' prefix)
+#   https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.2.17.tar.gz - GitHub archive URL for the release tag
+#   fba7d3d6dbffa2e59525ee300b4041803897fc0868f75c996d255d366f239e3f      - SHA256 checksum of the tarball
+#   0.2.17     - Version number (without 'v' prefix)
 #
 # Installation:
 #   brew tap xooooooooox/radp
@@ -13,9 +13,9 @@
 class Homelabctl < Formula
   desc "CLI tool for managing homelab infrastructure"
   homepage "https://github.com/xooooooooox/homelabctl"
-  url "https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.2.16.tar.gz"
-  sha256 "f2567e31428157e51e17978ed56f94f740ed5556a9d8b81a4f42b213fe3614af"
-  version "0.2.16"
+  url "https://github.com/xooooooooox/homelabctl/archive/refs/tags/v0.2.17.tar.gz"
+  sha256 "fba7d3d6dbffa2e59525ee300b4041803897fc0868f75c996d255d366f239e3f"
+  version "0.2.17"
   license "MIT"
 
   depends_on "xooooooooox/radp/radp-bash-framework"
@@ -42,6 +42,7 @@ class Homelabctl < Formula
   def post_install
     (libexec/".install-repo").write("xooooooooox/homelabctl\n")
     (libexec/".install-method").write("homebrew\n")
+    (libexec/".install-version").write("v#{version}\n")
   end
 
   def caveats
